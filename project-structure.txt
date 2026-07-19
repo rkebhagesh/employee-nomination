@@ -1,0 +1,29 @@
+employee-nomination-app/
+
+backend/
+│
+├── config/
+│   └── db.js
+├── routes/
+│   ├── auth.js
+│   ├── employees.js
+│   └── nominations.js
+├── middleware/
+│   └── authMiddleware.js
+├── server.js
+└── package.json
+
+frontend/
+│
+├── src/
+│   ├── pages/
+│   │   ├── Login.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Nominate.jsx
+│   │   └── Admin.jsx
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── EmployeeTable.jsx
+│   │   └── NominationForm.jsx
+│   ├── App.jsx
+│   └── main.jsx

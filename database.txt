@@ -1,0 +1,24 @@
+CREATE DATABASE nomination_db;
+
+USE nomination_db;
+
+CREATE TABLE employees (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(100),
+ email VARCHAR(100) UNIQUE,
+ password VARCHAR(255),
+ department VARCHAR(100),
+ role ENUM('admin','employee') DEFAULT 'employee'
+);
+
+CREATE TABLE nominations (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ nominee_id INT,
+ nominated_by INT,
+ reason TEXT,
+ month_year VARCHAR(20),
+ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+ FOREIGN KEY (nominee_id) REFERENCES employees(id),
+ FOREIGN KEY (nominated_by) REFERENCES employees(id)
+);
