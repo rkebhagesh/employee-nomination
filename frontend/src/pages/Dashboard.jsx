@@ -15,13 +15,14 @@ export default function Dashboard() {
    );
 
    setNominations(res.data);
+   console.log(res.data);
  };
 
  return (
    <div className="p-8">
 
      <h1 className="text-3xl font-bold mb-6">
-       Employee Nominations
+       Nomination Dashboard
      </h1>
 
      <button
