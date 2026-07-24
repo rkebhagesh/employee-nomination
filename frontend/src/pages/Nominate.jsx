@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../services/api";
+import Navbar from "../components/layout/Navbar";
+import { useAuth } from "../context/AuthContext";
 
 export default function Nominate() {
+  const { employee } = useAuth();
 
  const [employees, setEmployees] = useState([]);
 
@@ -15,9 +19,7 @@ export default function Nominate() {
  }, []);
 
  const loadEmployees = async () => {
-   const res = await axios.get(
-     "http://localhost:5000/api/employees"
-   );
+   const res = await api.get("/employees");
 
    setEmployees(res.data);
  };
@@ -34,10 +36,10 @@ const submitNomination = async (e) => {
       .replace(" ", "-");
 
     const check = await axios.get(
-      "http://localhost:5000/api/nominations/check",
+      "/nominations/check",
       {
         params: {
-          nominated_by: 1,
+          nominated_by: employee.id,
           nominee_id: form.nominee_id,
           month_year: monthYear,
         },
@@ -50,10 +52,10 @@ const submitNomination = async (e) => {
     }
 
     await axios.post(
-      "http://localhost:5000/api/nominations",
+      "/nominations",
       {
         ...form,
-        nominated_by: 1,
+        nominated_by: employee.id,
         month_year: monthYear,
       }
     );
@@ -77,9 +79,7 @@ const submitNomination = async (e) => {
 
      <div className="max-w-xl mx-auto bg-white p-6 rounded shadow">
 
-       <h2 className="text-2xl font-bold mb-4">
-         Employee Nomination
-       </h2>
+       <Navbar />
 
        <form onSubmit={submitNomination}>
 

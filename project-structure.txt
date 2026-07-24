@@ -14,16 +14,65 @@ backend/
 └── package.json
 
 frontend/
+|
+src
 │
-├── src/
-│   ├── pages/
-│   │   ├── Login.jsx
-│   │   ├── Dashboard.jsx
-│   │   ├── Nominate.jsx
-│   │   └── Admin.jsx
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── EmployeeTable.jsx
-│   │   └── NominationForm.jsx
-│   ├── App.jsx
-│   └── main.jsx
+├── assets
+│
+├── components
+│   ├── layout
+│   │     Navbar.jsx
+│   │     Sidebar.jsx
+│   │
+│   ├── common
+│   │     Loader.jsx
+│   │     Button.jsx
+│   │     Input.jsx
+│   │     Table.jsx
+│   │
+│   └── nomination
+│         NominationForm.jsx
+│
+├── pages
+│   ├── Dashboard.jsx
+│   ├── Nominate.jsx
+│   ├── Login.jsx
+│   └── NotFound.jsx
+│
+├── services
+│   └── api.js
+│
+├── context
+│   └── AuthContext.jsx
+│
+├── hooks
+│
+├── utils
+│   ├── constants.js
+│   └── helpers.js
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+
+Authentication flow
+|
+Employee
+    │
+    ▼
+Login Page
+    │
+    ▼
+Node API
+    │
+Verify Email + Password
+    │
+    ▼
+JWT Token
+    │
+    ▼
+React stores token
+(localStorage)
+    │
+    ▼
+Protected Dashboard

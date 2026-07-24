@@ -96,4 +96,35 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/stats", async (req, res) => {
+  try {
+    const monthYear = new Date()
+      .toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      })
+      .replace(" ", "-");
+
+    const [[total]] = await db.query(
+      "SELECT COUNT(*) AS total FROM nominations"
+    );
+
+    const [[monthly]] = await db.query(
+      "SELECT COUNT(*) AS total FROM nominations WHERE month_year=?",
+      [monthYear]
+    );
+
+    res.json({
+      total: total.total,
+      monthly: monthly.total,
+    });
+
+    console.log("Total nominations:", total.total);
+    console.log("Monthly nominations:", monthly.total);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

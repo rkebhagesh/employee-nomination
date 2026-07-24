@@ -1,18 +1,43 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Nominate from "./pages/Nominate";
-import EmployeeForm from "./pages/EmployeeForm";
+
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
- return (
-  <BrowserRouter>
-   <Routes>
-    <Route path="/" element={<Dashboard />} />
-    <Route path="/nominate" element={<Nominate />} />
-    <Route path="/add-employee" element={<EmployeeForm />} />
-   </Routes>
-  </BrowserRouter>
- );
+  return (
+    <Routes>
+
+      {/* Public Route */}
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      {/* Protected Dashboard */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Protected Nominate */}
+      <Route
+        path="/nominate"
+        element={
+          <ProtectedRoute>
+            <Nominate />
+          </ProtectedRoute>
+        }
+      />
+
+    </Routes>
+  );
 }
 
 export default App;

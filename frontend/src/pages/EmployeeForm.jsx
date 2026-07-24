@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import api from "../services/api";
 
 function EmployeeForm() {
   const [employee, setEmployee] = useState({
@@ -19,10 +20,7 @@ function EmployeeForm() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/employees",
-        employee
-      );
+      const res = await axios.post("/employees", employee);
 
       alert(res.data.message);
  

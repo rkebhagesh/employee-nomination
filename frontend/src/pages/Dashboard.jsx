@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Navbar from "../components/layout/Navbar";
+import api from "../services/api";
+import { useAuth } from "../context/AuthContext";
+import StatCard from "../components/dashboard/StatCard";
+
 
 export default function Dashboard() {
 
  const [nominations, setNominations] = useState([]);
+ const [stats, setStats] = useState({
+    total: 0,
+    monthly: 0,
+  });
 
  useEffect(() => {
    loadData();
  }, []);
+
+ const { employee } = useAuth();
 
  const loadData = async () => {
    const res = await axios.get(
@@ -16,21 +27,45 @@ export default function Dashboard() {
 
    setNominations(res.data);
    console.log(res.data);
+   const statRes = await api.get("/nominations/stats");
+   setStats(statRes.data);
  };
 
  return (
    <div className="p-8">
 
-     <h1 className="text-3xl font-bold mb-6">
-       Nomination Dashboard
-     </h1>
+    <Navbar />
 
-     <button
-       onClick={() => (window.location.href = "/nominate")}
-       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-     >
-       Nominate now!
-     </button>
+    <h1 className="text-3xl font-bold">
+
+Welcome,
+
+<span className="text-blue-600">
+
+ {employee.name}
+
+</span>
+
+ 👋
+
+</h1>
+
+<div className="grid md:grid-cols-2 gap-5 mb-8">
+
+   <StatCard
+      title="Total Nominations"
+      value={stats.total}
+      color="bg-blue-600"
+   />
+
+   <StatCard
+      title="This Month"
+      value={stats.monthly}
+      color="bg-green-600"
+   />
+
+</div>
+
 
      <table className="w-full bg-white shadow">
 
