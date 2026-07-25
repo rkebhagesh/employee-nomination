@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import api from "../services/api";
-import Navbar from "../components/layout/Navbar";
-import { useAuth } from "../context/AuthContext";
+import api from "../../services/api";
+import Navbar from "../../components/layout/Navbar";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Nominate() {
   const { employee } = useAuth();

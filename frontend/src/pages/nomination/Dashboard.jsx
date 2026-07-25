@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/layout/Navbar";
-import api from "../services/api";
-import { useAuth } from "../context/AuthContext";
-import StatCard from "../components/dashboard/StatCard";
+import Navbar from "../../components/layout/Navbar";
+import api from "../../services/api";
+import { useAuth } from "../../context/AuthContext";
+import StatCard from "../../components/dashboard/StatCard";
 
 
 export default function Dashboard() {
@@ -36,7 +36,7 @@ export default function Dashboard() {
 
     <Navbar />
 
-    <h1 className="text-3xl font-bold">
+    <h1 className="text-3xl font-bold my-5">
 
 Welcome,
 
@@ -69,7 +69,7 @@ Welcome,
 
      <table className="w-full bg-white shadow">
 
-       <thead>
+       <thead className="bg-gray-100 text-left">
          <tr className="bg-gray-200">
            <th className="p-3">Nominee</th>
            <th className="p-3">Nominated By</th>

@@ -64,7 +64,8 @@ router.post("/login", async (req, res) => {
 
                 email: employee.email,
 
-                department: employee.department
+                department: employee.department,
+                role: employee.role
 
             }
 

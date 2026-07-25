@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import {Link} from "react-router-dom";
 
 export default function Navbar() {
 
@@ -14,6 +15,7 @@ export default function Navbar() {
     navigate("/login");
 
   };
+
 
   return (
 
@@ -35,6 +37,17 @@ export default function Navbar() {
         >
           Logout
         </button>
+
+        {employee?.role === "admin" && (
+
+    <Link
+        to="/admin"
+        className="hover:underline"
+    >
+        Admin
+    </Link>
+
+)}
 
       </div>
 
